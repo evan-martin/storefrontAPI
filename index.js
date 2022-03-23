@@ -18,6 +18,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: process.env.SUCCESS_URL,
     cancel_url: process.env.CANCEL_URL,
   });
+  res.header("Access-Control_Allow-Origin", process.env.DOMAIN)
   res.redirect(303, session.url);
 });
 
