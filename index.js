@@ -18,8 +18,8 @@ app.post('/create-checkout-session', async (req, res) => {
     line_items: 
     [{ price: 'price_1KSmVXKx1GFK0jKDqiNgtfXh', quantity: 1 }],
     mode: 'payment',
-    success_url: 'www.google.com',
-    cancel_url: 'www.google.com',
+    success_url: 'https://www.google.com',
+    cancel_url: 'https://www.google.com',
   });
   res.header("Access-Control_Allow-Origin", '*')
   res.json(session.url);
