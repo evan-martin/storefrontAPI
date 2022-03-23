@@ -9,19 +9,14 @@ app.use(express.static('public'));
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get('/create-checkout-session', (req, res) => {
-  res.send('hello world')
-})
-
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: 
-    [{ price: 'price_1KSmVXKx1GFK0jKDqiNgtfXh', quantity: 1 }],
+      req.body.payload,
     mode: 'payment',
-    success_url: 'https://www.google.com',
-    cancel_url: 'https://www.google.com',
+    success_url: SUCCESS_URL,
+    cancel_url: CANCEL_URL,
   });
-  res.header("Access-Control_Allow-Origin", '*')
   res.json(session.url);
 });
 
