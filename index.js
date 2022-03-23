@@ -14,8 +14,8 @@ app.post('/create-checkout-session', async (req, res) => {
     line_items: 
       req.body.payload,
     mode: 'payment',
-    success_url: SUCCESS_URL,
-    cancel_url: CANCEL_URL,
+    success_url: process.env.SUCCESS_URL,
+    cancel_url: process.env.CANCEL_URL,
   });
   res.json(session.url);
 });
