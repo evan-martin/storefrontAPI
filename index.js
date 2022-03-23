@@ -19,7 +19,7 @@ app.post('/create-checkout-session', async (req, res) => {
     cancel_url: process.env.CANCEL_URL,
   });
   res.header("Access-Control_Allow-Origin", process.env.DOMAIN)
-  res.redirect(303, session.url);
+  res.json(session.url);
 });
 
 const port = process.env.PORT || '4242'
