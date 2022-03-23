@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const http=require('http')
 
 app.use(express.static('public'));
 app.use(cors())
@@ -22,4 +23,9 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 const port = process.env.PORT || '4242'
-app.listen(port, () => console.log(`listening on ${port}`));
+app.set('port', port)
+const server = http.createServer(app).listen(port, () => {
+  console.log(`listening on ${port}`)
+})
+
+module.exports = app
