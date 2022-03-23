@@ -10,16 +10,20 @@ app.use(express.static('public'));
 app.use(cors())
 app.use(bodyParser.json())
 
+app.get('/create-checkout-session', (req, res) => {
+  res.send('hello world')
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: 
-      req.body.payload,
+    [{ price: 'price_1KSmVXKx1GFK0jKDqiNgtfXh', quantity: 1 }],
     mode: 'payment',
     success_url: process.env.SUCCESS_URL,
     cancel_url: process.env.CANCEL_URL,
   });
   res.header("Access-Control_Allow-Origin", process.env.DOMAIN)
-  res.redirect(303, session.url);
+  res.json(session.url);
 });
 
 const port = process.env.PORT || '4242'
