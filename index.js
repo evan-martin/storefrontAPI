@@ -1,4 +1,3 @@
-// This is your test secret API key.
 require('dotenv').config({path: './.env'})
 const stripe = require('stripe')(process.env.SK_TEST);
 const express = require('express');
@@ -19,10 +18,10 @@ app.post('/create-checkout-session', async (req, res) => {
     line_items: 
     [{ price: 'price_1KSmVXKx1GFK0jKDqiNgtfXh', quantity: 1 }],
     mode: 'payment',
-    success_url: process.env.SUCCESS_URL,
-    cancel_url: process.env.CANCEL_URL,
+    success_url: 'www.google.com',
+    cancel_url: 'www.google.com',
   });
-  res.header("Access-Control_Allow-Origin", process.env.DOMAIN)
+  res.header("Access-Control_Allow-Origin", '*')
   res.json(session.url);
 });
 
