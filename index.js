@@ -10,6 +10,8 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.post('/create-checkout-session', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", 'GET, POST, PUT, DELETE, OPTIONS');
   const session = await stripe.checkout.sessions.create({
     line_items: 
       req.body.payload,
